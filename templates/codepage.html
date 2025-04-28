@@ -1,214 +1,63 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Error</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/theme/dracula.min.css">
+    <!-- Base CodeMirror -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/codemirror.min.js"></script>
+    
+    <!-- Language modes -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/ruby/ruby.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/shell/shell.min.js"></script>
+    
+    
+    <!-- UUID generator -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+</head>
+<body class="dark-mode">
+    <div class="container">
+        <header>
+            <h1>Master Error</h1>
+        </header>
+        
+        <main>
+            <div class="code-section">
+                <h2>Code Input</h2>
+                <textarea id="code-editor"></textarea>
+                <div class="button-group">
+                    <button id="analyze-btn" class="btn">Analyze Code</button>
+                    <button id="execute-btn" class="btn">Execute Code</button>
+                    <button id="clear-btn" class="btn">Clear History</button>
+                </div>
+            </div>
+            
+            <div class="result-section">
+                <div class="analysis-result">
+                    <h2>Analysis Result</h2>
+                    <div id="analysis-output" class="output-area"></div>
+                </div>
+                
+                <div class="execution-result">
+                    <h2>Execution Results</h2>
+                    <div id="execution-output" class="output-area"></div>
+                </div>
+            </div>
+        </main>
+        
 
-#inside head tag
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
- <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/codemirror.min.css">
- <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/theme/dracula.min.css">
- <!-- Base CodeMirror -->
- <script
-src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/codemirror.min.js"></script>
+    </div>
 
- <!-- Language modes -->
- <script
-src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/python/python.min.js"
-></script>
- <script
-src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/javascript/javascript.m
-in.js"></script>
- <script
-src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/clike/clike.min.js"></sc
-ript>
- <script
-src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/ruby/ruby.min.js"></sc
-ript>
- <script
-src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/htmlmixed/htmlmixed.
-min.js"></script>
- <script
-src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/xml/xml.min.js"></scri
-pt>
- <script
-src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/css/css.min.js"></scrip
-t>
- <script
-src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.3/mode/shell/shell.min.js"></s
-cript>
-
-
- <!-- UUID generator -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
-#inside body tag
-<div class="container">
- <header>
- <h1>Master Error</h1>
- </header>
-
- <main>
- <div class="code-section">
- <h2>Code Input</h2>
- <textarea id="code-editor"></textarea>
- <div class="button-group">
- <button id="analyze-btn" class="btn">Analyze Code</button>
- <button id="execute-btn" class="btn">Execute Code</button>
- <button id="clear-btn" class="btn">Clear History</button>
- </div>
- </div>
-
- <div class="result-section">
- <div class="analysis-result">
- <h2>Analysis Result</h2>
- <div id="analysis-output" class="output-area"></div>
- </div>
-
- <div class="execution-result">
- <h2>Execution Results</h2>
- <div id="execution-output" class="output-area"></div>
- </div>
- </div>
- </main>
-
- </div>
- <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-- Create a static folder, inside it create css folder and inside it create style.css file
-/* static/css/style.css */
-:root {
- --bg-color: #1e1e2e;
- --secondary-bg: #2b2b3b;
- --text-color: #e0e0e0;
- --highlight-color: #8be9fd;
- --accent-color: #bd93f9;
- --error-color: #ff5555;
- --success-color: #50fa7b;
-}
-* {
- margin: 0;
- padding: 0;
- box-sizing: border-box;
-}
-body {
- font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
- line-height: 1.6;
- color: var(--text-color);
- background-color: var(--bg-color);
- padding: 20px;
-}
-.container {
- max-width: 1200px;
- margin: 0 auto;
-}
-header {
- text-align: center;
- margin-bottom: 30px;
-}
-h1 {
- color: var(--highlight-color);
- font-size: 2.5rem;
- margin-bottom: 10px;
-}
-h2 {
- color: var(--accent-color);
- margin-bottom: 15px;
-}
-main {
- display: grid;
- grid-template-columns: 1fr;
- gap: 20px;
-}
-@media (min-width: 992px) {
- main {
- grid-template-columns: 1fr 1fr;
- }
-}
-.code-section, .result-section {
- background-color: var(--secondary-bg);
- border-radius: 8px;
- padding: 20px;
- box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.result-section {
- display: flex;
- flex-direction: column;
- gap: 20px;
-}
-.analysis-result, .execution-result {
- background-color: rgba(0, 0, 0, 0.2);
- border-radius: 8px;
- padding: 15px;
-}
-.output-area {
- white-space: pre-wrap;
- overflow-y: auto;
- max-height: 400px;
- background-color: #282a36;
- border-radius: 5px;
- padding: 15px;
- font-family: 'Consolas', 'Courier New', monospace;
-}
-.output-area pre {
- margin: 0;
- padding: 0;
- background-color: transparent;
-}
-.output-area code {
- background-color: #44475a;
- padding: 2px 5px;
- border-radius: 3px;
- font-family: 'Consolas', 'Courier New', monospace;
-}
-.output-area h1, .output-area h2, .output-area h3, .output-area h4 {
- color: var(--accent-color);
- margin-top: 15px;
- margin-bottom: 10px;
-}
-.output-area ul, .output-area ol {
- padding-left: 20px;
- margin: 10px 0;
-}
-.output-area p {
- margin-bottom: 10px;
-}
-.button-group {
- display: flex;
- gap: 10px;
- margin-top: 15px;
-}
-.btn {
- background-color: var(--accent-color);
- color: var(--text-color);
- border: none;
- padding: 10px 15px;
- border-radius: 5px;
- cursor: pointer;
- font-size: 1rem;
- transition: background-color 0.3s;
-}
-.btn:hover {
- background-color: #a679ff;
-}
-.CodeMirror {
- height: 350px;
- border-radius: 5px;
- font-family: 'Consolas', 'Courier New', monospace;
- font-size: 14px;
-}
-footer {
- text-align: center;
- margin-top: 30px;
- color: #999;
- font-size: 0.9rem;
-}
-.error {
- color: var(--error-color);
- background-color: rgba(255, 85, 85, 0.1);
- padding: 10px;
- border-radius: 5px;
- margin-bottom: 10px;
-}
-.success {
- color: var(--success-color);
- background-color: rgba(80, 250, 123, 0.1);
- padding: 10px;
- border-radius: 5px;
- margin-bottom: 10px;
-}
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

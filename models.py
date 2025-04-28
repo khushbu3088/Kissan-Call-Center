@@ -1,8 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 
-
-
 db = SQLAlchemy()
 
 class User(UserMixin, db.Model):
@@ -11,7 +9,8 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
     
-    def _init_(self, username, password, email):
+    def __init__(self, username, password, email):
         self.username = username
         self.password = password
         self.email = email
+        

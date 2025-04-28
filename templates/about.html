@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About | Master Error</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            background-color: #080114;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgb(5, 1, 14);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #118eee;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: transparent;
+            padding: 15px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 10px 0;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .navbar a::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: #00bcd4;
+            transition: width 0.3s ease, left 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .navbar a:hover {
+            color: #00bcd4;
+            transform: scale(1.1);
+        }
+
+        .navbar a:hover::before {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Smooth slide-down effect for active navbar items */
+        .navbar a.active {
+            background-color: #444;
+            padding: 15px 20px;
+            border-radius: 4px;
+        }
+
+        /* Adding animation */
+        .navbar a:nth-child(odd) {
+            animation: slideIn 0.5s ease-out 0.3s forwards;
+        }
+
+        .navbar a:nth-child(even) {
+            animation: slideIn 0.5s ease-out 0.5s forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Adding a hover effect to the navbar */
+        .navbar:hover {
+            /* background-color: #444; */
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/about" class="nav-link">About</a>
+
+        <a href="/contact" class="nav-link">Contact</a>
+    </div>
+    <div class="container">
+        <h1>About Master Error</h1>
+        <p><strong>Master Error</strong> is your coding buddy for handling and learning from errors. Whether you're a student, a beginner programmer, or just someone who breaks code for fun, this platform helps you understand  errors, fix them, and grow your debugging skills—step by step.It also tells about the language of the code entered.</p>
+        
+        <h2>Why We Built It</h2>
+        <p>Everyone faces errors when learning to code. But instead of feeling stuck, we believe every error is a chance to learn something new. Master Error was created to make bugs less scary and more educational, especially for beginners. It provides efficient feedback system to gather real time reviews and bug reports</p>
+        
+        <h2>What You Can Do Here</h2>
+        <ul>
+            <li>Browseerrors and their causes</li>
+            <li>Get simple, beginner-friendly explanations</li>
+            <li>Learn how to fix each error</li>
+            <li>See real code examples and best practices</li>
+            <li>Clears History</li>
+        </ul>
+        
+        <h2>Our Vision</h2>
+        <p>To create a space where errors aren’t obstacles—they’re part of the journey. We want to build confidence, encourage problem-solving, and help you become a better coder through every bug you squash.Instead of being frustrated it encourages you to explore ,understand and improve with every bug ypu encounter</p>
+    </div>
+</body>
+</html>
+
+
+
+
